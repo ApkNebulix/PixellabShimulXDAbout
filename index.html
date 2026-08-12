@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>PixelLab ShimulXD Pro</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Shimullabs | প্রিমিয়াম সংস্করণ</title>
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -41,7 +41,7 @@
             line-height: 1.6;
         }
 
-        /* ── Ambient BG ── */
+        /* Ambient BG */
         .ambient {
             position: fixed; inset: 0; pointer-events: none; z-index: 0;
             overflow: hidden;
@@ -62,85 +62,50 @@
             100% { transform: translate(30px,40px) scale(1.12); }
         }
 
-        /* Noise grain overlay */
+        /* Noise grain */
         body::after {
             content: ''; position: fixed; inset: 0; z-index: 1; pointer-events: none;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
             opacity: 0.35;
         }
 
-        /* ── Preloader ── */
+        /* ── SIMPLE LOADER ── */
         #preloader {
             position: fixed; inset: 0; z-index: 9999;
             background: var(--bg);
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            gap: 24px;
-            transition: opacity 0.6s ease, visibility 0.6s ease;
+            gap: 20px;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
         }
         #preloader.hidden { opacity: 0; visibility: hidden; }
-
-        .pre-logo {
-            width: 90px; height: 90px;
-            border-radius: 26px;
-            background: var(--glass-strong);
-            border: 1px solid var(--glass-border-bright);
-            padding: 10px;
-            box-shadow: 0 0 40px var(--primary-glow);
-            animation: pre-pulse 1.6s ease-in-out infinite;
-        }
-        @keyframes pre-pulse {
-            0%,100% { transform: scale(0.95); box-shadow: 0 0 30px var(--primary-glow); }
-            50%      { transform: scale(1.05); box-shadow: 0 0 60px var(--primary-glow); }
-        }
-
-        .pre-ring {
-            width: 100px; height: 100px;
-            position: absolute;
+        .loader-spinner {
+            width: 52px; height: 52px;
+            border: 3px solid rgba(79,143,255,0.2);
+            border-top: 3px solid var(--primary);
+            border-right: 3px solid var(--secondary);
             border-radius: 50%;
-            border: 2px solid transparent;
-            border-top-color: var(--primary);
-            border-right-color: var(--secondary);
-            animation: spin 1.2s linear infinite;
+            animation: spin 0.8s linear infinite;
+            box-shadow: 0 0 12px var(--primary-glow);
         }
         @keyframes spin { to { transform: rotate(360deg); } }
-
-        .pre-logo-wrap { position: relative; display: flex; align-items: center; justify-content: center; }
-
-        .pre-track {
-            width: 180px; height: 3px;
-            background: rgba(255,255,255,0.06);
-            border-radius: 10px; overflow: hidden;
-        }
-        .pre-fill {
-            height: 100%; width: 0;
-            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
-            border-radius: 10px;
-            animation: fill-bar 1.2s cubic-bezier(0.4,0,0.2,1) forwards;
-        }
-        @keyframes fill-bar {
-            0%   { width: 0; }
-            60%  { width: 75%; }
-            100% { width: 100%; }
-        }
         .pre-text {
-            font-size: 13px; font-weight: 600; letter-spacing: 2px;
+            font-size: 14px; font-weight: 600; letter-spacing: 1px;
             background: linear-gradient(90deg, var(--primary), var(--secondary));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
         }
 
         /* ── HEADER ── */
         #app { position: relative; z-index: 2; }
 
         .header {
-            padding: 50px 20px 70px;
+            padding: 45px 20px 30px;
             text-align: center;
             position: relative;
             overflow: hidden;
         }
         .header-inner {
             position: relative; z-index: 2;
-            display: flex; flex-direction: column; align-items: center; gap: 14px;
+            display: flex; flex-direction: column; align-items: center; gap: 12px;
         }
         .logo-wrap {
             position: relative; display: inline-flex; align-items: center; justify-content: center;
@@ -157,7 +122,7 @@
             100% { opacity: 0.55; filter: blur(22px); }
         }
         .logo {
-            width: 100px; height: 100px;
+            width: 95px; height: 95px;
             border-radius: 28px;
             background: var(--glass-strong);
             border: 1.5px solid var(--glass-border-bright);
@@ -172,17 +137,17 @@
             50%      { transform: translateY(-7px); }
         }
         .app-title {
-            font-size: 26px; font-weight: 800;
+            font-size: 28px; font-weight: 800;
             background: linear-gradient(120deg, #fff 0%, var(--primary) 50%, var(--secondary) 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             letter-spacing: -0.5px;
         }
         .version-badge {
             display: inline-flex; align-items: center; gap: 7px;
-            padding: 6px 18px; border-radius: 50px;
+            padding: 5px 16px; border-radius: 50px;
             background: rgba(79,143,255,0.12);
             border: 1px solid rgba(79,143,255,0.25);
-            font-size: 12px; font-weight: 700; color: var(--primary);
+            font-size: 11.5px; font-weight: 700; color: var(--primary);
             letter-spacing: 1px; text-transform: uppercase;
         }
         .pulse-dot {
@@ -191,68 +156,83 @@
             box-shadow: 0 0 8px var(--accent2);
             animation: blink 1.5s ease-in-out infinite;
         }
-        @keyframes blink { 0%,100%{opacity:1}50%{opacity:0.3} }
-
-        /* ── NAV ── */
-        .nav-wrap {
-            max-width: 480px; margin: -36px auto 0;
-            padding: 0 16px;
-            position: sticky; top: 12px; z-index: 100;
-        }
-        .nav {
-            display: flex; gap: 6px;
-            background: rgba(10,13,22,0.75);
-            backdrop-filter: blur(25px) saturate(180%);
-            -webkit-backdrop-filter: blur(25px) saturate(180%);
-            border: 1px solid var(--glass-border-bright);
-            padding: 6px;
-            border-radius: 22px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06);
-        }
-        .tab-btn {
-            flex: 1; border: none; cursor: pointer;
-            background: transparent; color: var(--text-muted);
-            padding: 11px 6px; border-radius: 16px;
-            font-size: 13px; font-weight: 700;
-            font-family: inherit;
-            display: flex; flex-direction: column; align-items: center; gap: 4px;
-            transition: var(--transition);
-            white-space: nowrap;
-        }
-        .tab-btn i { font-size: 17px; }
-        .tab-btn.active {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: #fff;
-            box-shadow: 0 6px 20px var(--primary-glow);
-            transform: translateY(-1px);
-        }
-        .tab-btn:not(.active):hover { color: var(--text); background: var(--glass); }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
         /* ── CONTENT ── */
         .container {
-            max-width: 520px; margin: 0 auto;
-            padding: 28px 16px 80px;
+            max-width: 540px; margin: 0 auto;
+            padding: 10px 16px 60px;
         }
 
-        .tab-panel { display: none; }
-        .tab-panel.active {
-            display: block;
-            animation: emerge 0.6s cubic-bezier(0.23,1,0.32,1) both;
+        /* ── SCROLLING NOTICE TICKER ── */
+        .notice-ticker {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border-bright);
+            border-radius: 18px;
+            padding: 10px 14px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            overflow: hidden;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
-        @keyframes emerge {
-            from { opacity:0; transform: translateY(28px) scale(0.97); }
-            to   { opacity:1; transform: translateY(0) scale(1); }
+        .notice-badge {
+            background: rgba(79, 143, 255, 0.18);
+            color: var(--primary);
+            border: 1px solid rgba(79, 143, 255, 0.35);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+        .notice-badge svg { fill: var(--primary); width: 13px; height: 13px; }
+        .ticker-wrapper {
+            overflow: hidden;
+            white-space: nowrap;
+            width: 100%;
+            position: relative;
+        }
+        .ticker-content {
+            display: inline-block;
+            white-space: nowrap;
+            animation: tickerScroll 24s linear infinite;
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        .ticker-content strong {
+            color: var(--primary);
+            font-weight: 700;
+        }
+        .ticker-content span {
+            color: var(--text);
+            font-weight: 600;
+        }
+        @keyframes tickerScroll {
+            0%   { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .notice-ticker:hover .ticker-content {
+            animation-play-state: paused;
         }
 
-        /* ── CARDS ── */
+        /* Combined Card */
         .card {
             background: var(--glass);
             backdrop-filter: blur(20px) saturate(150%);
             -webkit-backdrop-filter: blur(20px) saturate(150%);
             border: 1px solid var(--glass-border);
             border-radius: var(--radius-card);
-            padding: 22px;
-            margin-bottom: 18px;
+            padding: 26px 22px;
+            margin-bottom: 22px;
             box-shadow: var(--shadow-heavy);
             position: relative; overflow: hidden;
         }
@@ -262,119 +242,36 @@
             height: 1px;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
         }
-
-        /* Card shape variants */
         .card-hex::after {
             content: '';
             position: absolute; right: -40px; top: -40px;
-            width: 130px; height: 130px;
+            width: 150px; height: 150px;
             background: radial-gradient(circle, var(--primary-glow), transparent 70%);
             pointer-events: none;
         }
-        .card-diamond::after {
-            content: '';
-            position: absolute; left: -30px; bottom: -30px;
-            width: 110px; height: 110px;
-            background: radial-gradient(circle, rgba(167,139,250,0.2), transparent 70%);
-            pointer-events: none;
-        }
 
-        /* ── Alert Banner ── */
-        .alert-banner {
-            display: flex; align-items: center; gap: 12px;
-            padding: 16px 20px; border-radius: 20px; margin-bottom: 18px;
-            background: linear-gradient(135deg, rgba(244,114,182,0.15), rgba(167,139,250,0.15));
-            border: 1px solid rgba(244,114,182,0.25);
-            backdrop-filter: blur(14px);
-        }
-        .alert-icon { font-size: 22px; flex-shrink: 0; }
-        .alert-text { font-size: 14px; font-weight: 700; color: var(--accent); }
-
-        /* ── Feature Items ── */
         .card-title {
-            font-size: 17px; font-weight: 800; margin-bottom: 18px;
+            font-size: 18px; font-weight: 800; margin-bottom: 16px;
             background: linear-gradient(90deg, var(--primary), var(--secondary));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            display: flex; align-items: center; gap: 8px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .card-title svg {
+            width: 22px; height: 22px; fill: var(--primary);
+            stroke: none;
         }
 
-        .feature-list { display: flex; flex-direction: column; gap: 10px; }
-
-        .feature-item {
-            display: flex; align-items: flex-start; gap: 14px;
-            padding: 14px 15px;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--glass-border);
-            border-radius: 18px;
-            transition: var(--transition);
-            position: relative; overflow: hidden;
-        }
-        .feature-item::before {
-            content: '';
-            position: absolute; left: 0; top: 0; bottom: 0;
-            width: 3px;
-            background: linear-gradient(180deg, var(--primary), var(--secondary));
-            border-radius: 3px 0 0 3px;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        .feature-item:hover {
-            background: rgba(79,143,255,0.06);
-            border-color: rgba(79,143,255,0.2);
-            transform: translateX(4px);
-        }
-        .feature-item:hover::before { opacity: 1; }
-
-        .feat-icon {
-            width: 44px; height: 44px; flex-shrink: 0;
-            border-radius: 14px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 19px; color: #fff;
-        }
-        .grad1 { background: linear-gradient(135deg, #4f8fff, #a78bfa); box-shadow: 0 6px 18px rgba(79,143,255,0.3); }
-        .grad2 { background: linear-gradient(135deg, #f472b6, #fb923c); box-shadow: 0 6px 18px rgba(244,114,182,0.3); }
-        .grad3 { background: linear-gradient(135deg, #34d399, #059669); box-shadow: 0 6px 18px rgba(52,211,153,0.3); }
-        .grad4 { background: linear-gradient(135deg, #a78bfa, #7c3aed); box-shadow: 0 6px 18px rgba(167,139,250,0.3); }
-        .grad5 { background: linear-gradient(135deg, #fbbf24, #f59e0b); box-shadow: 0 6px 18px rgba(251,191,36,0.3); }
-
-        .feat-body strong {
-            display: block; font-size: 14px; font-weight: 700;
-            color: var(--text); margin-bottom: 3px;
-        }
-        .feat-body p {
-            font-size: 12.5px; color: var(--text-muted); line-height: 1.7;
+        /* Section Divider inside Card */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--glass-border-bright), transparent);
+            margin: 26px 0;
         }
 
-        /* ── Social ── */
-        .social-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .social-link {
-            text-decoration: none; padding: 20px 14px;
-            border-radius: 22px; color: white;
-            display: flex; flex-direction: column; align-items: center; gap: 10px;
-            font-weight: 700; font-size: 14px;
-            transition: var(--transition);
-            position: relative; overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.08);
-        }
-        .social-link::before {
-            content: '';
-            position: absolute; inset: 0;
-            background: rgba(255,255,255,0);
-            transition: background 0.3s;
-        }
-        .social-link:hover::before { background: rgba(255,255,255,0.08); }
-        .social-link:active { transform: scale(0.92); }
-        .social-link i { font-size: 26px; }
-
-        .sl-tg  { background: linear-gradient(135deg, #0e76a8, #1da1f2); box-shadow: 0 10px 30px rgba(29,161,242,0.25); }
-        .sl-fb  { background: linear-gradient(135deg, #1565c0, #1877f2); box-shadow: 0 10px 30px rgba(24,119,242,0.25); }
-        .sl-yt  { background: linear-gradient(135deg, #b71c1c, #f44336); box-shadow: 0 10px 30px rgba(244,67,54,0.25); }
-        .sl-ch  { background: linear-gradient(135deg, #5b2db0, #a78bfa); box-shadow: 0 10px 30px rgba(167,139,250,0.25); }
-
-        /* ── About / Team ── */
+        /* about-mission */
         .about-mission {
             font-size: 14px; color: var(--text-muted); line-height: 1.85;
-            text-align: justify; margin-bottom: 22px;
+            text-align: justify; margin-bottom: 20px;
         }
         .about-mission strong { color: var(--primary); }
         .exclusive-badge {
@@ -387,7 +284,7 @@
 
         .info-row {
             display: flex; align-items: center; gap: 12px;
-            padding: 12px 14px; margin-bottom: 8px;
+            padding: 12px 14px; margin-bottom: 10px;
             background: rgba(255,255,255,0.025);
             border: 1px solid var(--glass-border);
             border-radius: 16px;
@@ -398,82 +295,10 @@
             width: 36px; height: 36px; flex-shrink: 0;
             border-radius: 11px;
             display: flex; align-items: center; justify-content: center;
-            font-size: 15px;
         }
         .info-text { font-size: 13.5px; color: var(--text-muted); line-height: 1.4; }
         .info-text strong { color: var(--text); display: block; font-size: 12px; margin-bottom: 1px; font-weight: 500; }
         .info-value { color: var(--primary); font-weight: 700; font-size: 14px; }
-
-        /* Team Section */
-        .team-section { margin-top: 10px; }
-        .section-label {
-            font-size: 11px; font-weight: 800; letter-spacing: 2px;
-            color: var(--text-dim); text-transform: uppercase;
-            margin-bottom: 14px; padding-left: 4px;
-        }
-        .team-grid { display: flex; flex-direction: column; gap: 10px; }
-
-        .team-card {
-            display: flex; align-items: center; gap: 14px;
-            padding: 14px 16px;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            transition: var(--transition);
-            position: relative; overflow: hidden;
-        }
-        .team-card::after {
-            content: '';
-            position: absolute; right: -20px; top: -20px;
-            width: 80px; height: 80px;
-            border-radius: 50%;
-            pointer-events: none;
-            opacity: 0.4;
-        }
-        .team-card.lead::after  { background: radial-gradient(circle, var(--primary-glow), transparent 70%); }
-        .team-card.dev::after   { background: radial-gradient(circle, rgba(167,139,250,0.2), transparent 70%); }
-        .team-card.fix::after   { background: radial-gradient(circle, rgba(52,211,153,0.2), transparent 70%); }
-
-        .team-card:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12); }
-
-        .team-avatar {
-            width: 48px; height: 48px; flex-shrink: 0;
-            border-radius: 15px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 20px; font-weight: 900;
-            color: white; letter-spacing: -1px;
-        }
-        .av-lead { background: linear-gradient(135deg, var(--primary), var(--secondary)); box-shadow: 0 6px 18px var(--primary-glow); }
-        .av-dev  { background: linear-gradient(135deg, var(--secondary), var(--accent)); box-shadow: 0 6px 18px rgba(167,139,250,0.3); }
-        .av-fix  { background: linear-gradient(135deg, var(--accent2), #0891b2); box-shadow: 0 6px 18px rgba(52,211,153,0.3); }
-
-        .team-info { flex: 1; min-width: 0; }
-        .team-name {
-    font-size: 12px; /* ৬ পিক্সেল অনেক ছোট, তাই ১২ দিলাম */
-    font-weight: 600;
-    color: var(--text);
-    white-space: normal; /* টেক্সট নিচের লাইনে যাওয়ার অনুমতি দিবে */
-    word-wrap: break-word; /* বড় শব্দ থাকলে ভেঙে দিবে */
-}
-        .team-role { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
-        .team-badge {
-            padding: 4px 10px; border-radius: 8px;
-            font-size: 11px; font-weight: 700;
-            white-space: nowrap; flex-shrink: 0;
-        }
-        .badge-lead { background: rgba(79,143,255,0.15); color: var(--primary); border: 1px solid rgba(79,143,255,0.25); }
-        .badge-dev  { background: rgba(167,139,250,0.15); color: var(--secondary); border: 1px solid rgba(167,139,250,0.25); }
-        .badge-fix  { background: rgba(52,211,153,0.15); color: var(--accent2); border: 1px solid rgba(52,211,153,0.25); }
-
-        .build-row {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 14px 16px; margin-top: 10px;
-            background: linear-gradient(135deg, rgba(79,143,255,0.08), rgba(167,139,250,0.08));
-            border: 1px solid rgba(79,143,255,0.15);
-            border-radius: 18px;
-        }
-        .build-label { font-size: 12px; color: var(--text-muted); font-weight: 600; }
-        .build-value { font-size: 13px; font-weight: 800; color: #fbbf24; }
         .community-tag {
             display: inline-flex; align-items: center; gap: 6px;
             padding: 6px 14px; border-radius: 10px;
@@ -481,46 +306,56 @@
             color: var(--accent2); font-size: 12px; font-weight: 700;
         }
 
-        .quote-box {
-            text-align: center; padding: 18px;
-            border-top: 1px solid var(--glass-border);
-            margin-top: 16px;
+        /* Social Grid (Contact) */
+        .social-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 12px; }
+        .social-link {
+            text-decoration: none; padding: 18px 12px;
+            border-radius: 22px; color: white;
+            display: flex; flex-direction: column; align-items: center; gap: 10px;
+            font-weight: 700; font-size: 13.5px;
+            transition: var(--transition);
+            position: relative; overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.08);
         }
-        .quote-text {
-            font-size: 14px; font-style: italic; color: var(--text-muted); font-weight: 500;
+        .social-link::before {
+            content: ''; position: absolute; inset: 0;
+            background: rgba(255,255,255,0);
+            transition: background 0.3s;
         }
-        .quote-text span { color: var(--primary); font-weight: 700; font-style: normal; }
+        .social-link:hover::before { background: rgba(255,255,255,0.08); }
+        .social-link:active { transform: scale(0.96); }
+        .social-link svg { width: 26px; height: 26px; fill: white; flex-shrink: 0; }
+        
+        .sl-ch  { background: linear-gradient(135deg, #1e3a8a, #4f8fff); box-shadow: 0 10px 30px rgba(79,143,255,0.3); }
+        .sl-tg  { background: linear-gradient(135deg, #0e76a8, #1da1f2); box-shadow: 0 10px 30px rgba(29,161,242,0.25); }
+        .sl-fb  { background: linear-gradient(135deg, #1565c0, #1877f2); box-shadow: 0 10px 30px rgba(24,119,242,0.25); }
+        .sl-yt  { background: linear-gradient(135deg, #b71c1c, #f44336); box-shadow: 0 10px 30px rgba(244,67,54,0.25); }
 
-        /* ── Footer ── */
         .footer-note {
             text-align: center; padding: 10px 0 6px;
             font-size: 12px; color: var(--text-dim); letter-spacing: 0.4px;
         }
         .footer-note em { color: var(--accent); font-style: normal; }
 
-        /* Divider */
-        .divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
-            margin: 16px 0;
+        /* Reveal animation */
+        .info-row, .social-link, .notice-ticker {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .revealed {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
         }
     </style>
 </head>
 <body>
 
-<!-- Preloader -->
 <div id="preloader">
-    <div class="pre-logo-wrap">
-        <div class="pre-ring"></div>
-        <img src="https://raw.githubusercontent.com/ApkNebulix/Daroid-AN/refs/heads/main/Img/PixellabShimulXD/pixellabshimulxd_logo.png"
-             class="pre-logo" alt="Logo"
-             onerror="this.style.display='none'">
-    </div>
-    <div class="pre-track"><div class="pre-fill"></div></div>
-    <p class="pre-text">Loading Perfection</p>
+    <div class="loader-spinner"></div>
+    <p class="pre-text">লোডিং প্রস্তুত...</p>
 </div>
 
-<!-- Ambient orbs -->
 <div class="ambient">
     <div class="orb orb1"></div>
     <div class="orb orb2"></div>
@@ -529,318 +364,163 @@
 </div>
 
 <div id="app">
-    <!-- Header -->
     <div class="header">
         <div class="header-inner">
             <div class="logo-wrap">
                 <div class="logo-ring"></div>
-                <img src="https://raw.githubusercontent.com/ApkNebulix/Daroid-AN/refs/heads/main/Img/PixellabShimulXD/pixellabshimulxd_logo.png"
-                     class="logo" alt="PixelLab ShimulXD"
+                <img src="https://raw.githubusercontent.com/shimullabsxd/Droid_File/refs/heads/main/ShimulLabs/Kreate_1783296900946.jpg"
+                     class="logo" alt="Shimullabs"
                      onerror="this.style.background='linear-gradient(135deg,#4f8fff,#a78bfa)'">
             </div>
-            <h1 class="app-title">PixelLab ShimulXD</h1>
+            <h1 class="app-title">Shimullabs</h1>
             <div class="version-badge">
                 <div class="pulse-dot"></div>
-                Advance Edition
+                প্রিমিয়াম এডিশন
             </div>
         </div>
     </div>
 
-    <!-- Nav -->
-    <div class="nav-wrap">
-        <nav class="nav">
-            <button class="tab-btn active" onclick="openTab('features', this)">
-                <i class="fas fa-rocket"></i> ফিচার
-            </button>
-            <button class="tab-btn" onclick="openTab('social', this)">
-                <i class="fas fa-comment-dots"></i> কন্টাক্ট
-            </button>
-            <button class="tab-btn" onclick="openTab('about', this)">
-                <i class="fas fa-fingerprint"></i> তথ্য
-            </button>
-        </nav>
-    </div>
-
-    <!-- Content -->
     <div class="container">
 
-        <!-- ── FEATURES ── -->
-        <div id="features" class="tab-panel active">
-            <div class="alert-banner">
-                <span class="alert-icon">🚀</span>
-                <span class="alert-text">এটি একটি স্পেশাল সংস্করণ!</span>
+        <!--Scrolling Notice Ticker -->
+        <div class="notice-ticker">
+            <div class="notice-badge">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                বিশেষ নোটিশ
             </div>
-
-            <div class="card card-hex">
-                <div class="card-title"><i class="fas fa-fire"></i> প্রিমিয়াম টুলস ও আপডেট</div>
-                <div class="feature-list">
-
-                    <div class="feature-item">
-                        <div class="feat-icon grad1"><i class="fas fa-palette"></i></div>
-                        <div class="feat-body">
-                            <strong>Premium UI Design</strong>
-                            <p>পিক্সল্যাবের ইউজার ইন্টারফেস এখন আরও আধুনিক ও প্রিমিয়াম, যা কাজকে করবে সহজ ও আকর্ষণীয়।</p>
-                        </div>
-                    </div>
-
-                    <div class="feature-item">
-                        <div class="feat-icon grad2"><i class="fas fa-tools"></i></div>
-                        <div class="feat-body">
-                            <strong>Text Effect Bug Fixed</strong>
-                            <p>Emboss এবং 3D Text ইফেক্টের সব বাগ ফিক্স — এখন স্মুথলি ব্যবহার করুন।</p>
-                        </div>
-                    </div>
-                    
-                    <div class="feature-item">
-                        <div class="feat-icon grad2"><i class="fas fa-redo-alt"></i></div>
-                        <div class="feat-body">
-                            <strong>Text Curve Fix</strong>
-                            <p>লেখাকে এখন আপনার ইচ্ছামতো নিখুঁতভাবে বাঁকানো যাবে — কোনো প্রকার কোয়ালিটি লস ছাড়াই।</p>
-                        </div>
-                    </div>
-
-                    <div class="feature-item">
-                        <div class="feat-icon grad2"><i class="fas fa-language"></i></div>
-                        <div class="feat-body">
-                            <strong>Text Language Change</strong>
-                            <p>সহজেই লেখার ভাষা পরিবর্তন করুন এবং আপনার পছন্দের ভাষায় ডিজাইন সম্পন্ন করুন।</p>
-                        </div>
-                    </div>
-
-                    <div class="feature-item">
-                        <div class="feat-icon grad2"><i class="fas fa-shapes"></i></div>
-                        <div class="feat-body">
-                            <strong>New Two Shape Add</strong>
-                            <p>ডিজাইনকে আরও আকর্ষণীয় করতে যুক্ত করা হয়েছে চমৎকার নতুন দুটি শেইপ (Shape)।</p>
-                        </div>
-                    </div>
-
-                    <div class="feature-item">
-                        <div class="feat-icon grad3"><i class="fas fa-eraser"></i></div>
-                        <div class="feat-body">
-                            <strong>Magic BG Remover</strong>
-                            <p>এক ক্লিকে ও ম্যানুয়ালি ব্যাকগ্রাউন্ড রিমুভ করার শক্তিশালী টুল।</p>
-                        </div>
-                    </div>
-
-                    <div class="feature-item">
-                        <div class="feat-icon grad4"><i class="fas fa-magic"></i></div>
-                        <div class="feat-body">
-                            <strong>Advance Image Eraser</strong>
-                            <p>ফটোশপের মতো Brush Size, Hardness ও Finger Offset কন্ট্রোলে নিখুঁত ইরেজার।</p>
-                        </div>
-                    </div>
-
-                    <div class="feature-item">
-                        <div class="feat-icon grad5"><i class="fas fa-font"></i></div>
-                        <div class="feat-body">
-                            <strong>Smart Font Manager</strong>
-                            <p>ZIP থেকে সরাসরি আনজিপ করে সাব-ফোল্ডার থেকে .otf ও .ttf ফন্ট অটো ইম্পোর্ট।</p>
-                        </div>
-                    </div>
-
-                    <div class="feature-item">
-                        <div class="feat-icon grad1"><i class="fas fa-file-export"></i></div>
-                        <div class="feat-body">
-                            <strong>Ultra HD & Multi-Format Export</strong>
-                            <p>JPG, PNG, WebP এবং প্রফেশনাল PDF — সর্বোচ্চ কোয়ালিটিতে সেভ করুন।</p>
-                        </div>
-                    </div>
-
-                    <div class="feature-item">
-                        <div class="feat-icon grad2"><i class="fas fa-low-vision"></i></div>
-                        <div class="feat-body">
-                            <strong>Pro Image Blur</strong>
-                            <p>ছবির যেকোনো অংশ বা পুরো ছবি প্রয়োজনমতো ব্লার করুন।</p>
-                        </div>
-                    </div>
-
-                    <div class="feature-item">
-                        <div class="feat-icon grad3"><i class="fas fa-user-tag"></i></div>
-                        <div class="feat-body">
-                            <strong>Custom Branding</strong>
-                            <p>ডিজাইনে নিজের নাম বা কাস্টম টেক্সট যোগ করার সহজ অপশন।</p>
-                        </div>
-                    </div>
-
-                    <div class="feature-item">
-                        <div class="feat-icon grad4"><i class="fas fa-calendar-alt"></i></div>
-                        <div class="feat-body">
-                            <strong>Real-time Timestamp</strong>
-                            <p>স্টাইলিশ ফরম্যাটে (Day · Date · Time) অটো সময় যুক্ত করার ফিচার।</p>
-                        </div>
-                    </div>
-
-                    <div class="feature-item">
-                        <div class="feat-icon grad5"><i class="fas fa-search"></i></div>
-                        <div class="feat-body">
-                            <strong>PLP Project Search</strong>
-                            <p>PLP ব্রাউজার থেকে দ্রুত পছন্দের প্রজেক্ট খুঁজে পেতে সার্চ অপশন।</p>
-                        </div>
-                    </div>
-
+            <div class="ticker-wrapper">
+                <div class="ticker-content">
+                    📢 <strong>Shimullabs</strong> মূলত জনপ্রিয় <span>PixelLab ShimulXD</span>-এর পরবর্তী অফিসিয়াল আপগ্রেড ভার্সন, যা <span>PixelLab ShimulXD</span>-এর মূল ডেভেলপার দ্বারাই পুনরায় নতুন ও আধুনিক ফিচার সহ তৈরি করা হয়েছে। কোনো প্রকার বিভ্রান্তি ছাড়াই এর প্রিমিয়াম ফিচারগুলো উপভোগ করুন!
                 </div>
             </div>
         </div>
 
-        <!-- ── SOCIAL ── -->
-        <div id="social" class="tab-panel">
-            <div class="card card-diamond">
-                <div class="card-title" style="justify-content: center;"><i class="fas fa-users"></i> কমিউনিটিতে যোগ দিন</div>
-                <div class="social-grid">
-                    <a href="https://t.me/PixellabShimulXD" class="social-link sl-ch" target="_blank">
-                        <i class="fab fa-telegram-plane"></i>
-                        <span>Channel</span>
-                    </a>
-                    <a href="https://t.me/ShimulXD" class="social-link sl-tg" target="_blank">
-                        <i class="fas fa-headset"></i>
-                        <span>Admin</span>
-                    </a>
-                    <a href="https://facebook.com/groups/1493021585672006/" class="social-link sl-fb" target="_blank">
-                        <i class="fab fa-facebook-f"></i>
-                        <span>Group</span>
-                    </a>
-                    <a href="https://www.youtube.com/@ShimulXDBD" class="social-link sl-yt" target="_blank">
-                        <i class="fab fa-youtube"></i>
-                        <span>YouTube</span>
-                    </a>
+        <!-- একত্রিত একক প্যানেল/কার্ড -->
+        <div class="card card-hex">
+            
+            <!-- মিশন ও পরিচিতি অংশ -->
+            <div class="card-title">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="4"></circle><line x1="12" y1="2" x2="12" y2="4"></line><line x1="12" y1="20" x2="12" y2="22"></line>
+                    <line x1="4.93" y1="4.93" x2="6.34" y2="6.34"></line><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"></line>
+                </svg>
+                আমাদের লক্ষ্য ও পরিচিতি
+            </div>
+            <p class="about-mission">
+                <strong>Shimullabs</strong> সাধারণ কোনো মোড নয়। এটি প্রফেশনাল ডিজাইনারদের চাহিদাকে সর্বোচ্চ গুরুত্ব দিয়ে তৈরি একটি শক্তিশালী টুল।
+                উন্নত AI ব্যাকগ্রাউন্ড রিমুভার ও অটো ফন্ট ম্যানেজমেন্টসহ <span class="exclusive-badge">Exclusive Premium</span> ফিচার দিয়ে মোবাইল গ্রাফিক্স ডিজাইনকে নতুন উচ্চতায় নিয়ে যাওয়াই আমাদের লক্ষ্য।
+            </p>
+
+            <div class="info-row">
+                <div class="info-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="1.8">
+                        <path d="M12 2L15 8.5L22 9.5L17 14L18.5 21L12 17.5L5.5 21L7 14L2 9.5L9 8.5L12 2Z" fill="rgba(251,191,36,0.15)" stroke="#fbbf24"/>
+                    </svg>
+                </div>
+                <div class="info-text">
+                    <strong>Build Type</strong>
+                    <span class="info-value">Pro · Ultimate Premium</span>
                 </div>
             </div>
+
+            <div class="info-row">
+                <div class="info-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="1.8">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                </div>
+                <div class="info-text">
+                    <strong>Community</strong>
+                    <span class="community-tag">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="#34d399"><polygon points="12 17.27 18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21 12 17.27"/></svg>
+                        ImaginStudio
+                    </span>
+                </div>
+            </div>
+
+            <!-- ডিভাইডার লাইন -->
+            <div class="section-divider"></div>
+
+            <!-- যোগাযোগ ও সামাজিক মাধ্যম অংশ -->
+            <div class="card-title">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    <path d="M8 10h.01M12 10h.01M16 10h.01"></path>
+                </svg>
+                যোগাযোগ ও কমিউনিটি
+            </div>
+            
+            <div class="social-grid">
+                <!-- টেলিগ্রাম চ্যানেল -->
+                <a href="https://t.me/shimullabsxd" class="social-link sl-ch" target="_blank">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M9.78 18.65l.28-4.2 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/>
+                    </svg>
+                    <span>টেলিগ্রাম চ্যানেল</span>
+                </a>
+
+                <!-- টেলিগ্রাম এডমিন -->
+                <a href="https://t.me/ShimulXD" class="social-link sl-tg" target="_blank">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2a10 10 0 1010 10A10 10 0 0012 2zm1 15h-2v-2h2zm0-4h-2V7h2z"/>
+                    </svg>
+                    <span>অ্যাডমিন সাপোর্ট</span>
+                </a>
+
+                <!-- ফেসবুক গ্রুপ -->
+                <a href="https://facebook.com/groups/1493021585672006/" class="social-link sl-fb" target="_blank">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                    <span>ফেসবুক গ্রুপ</span>
+                </a>
+
+                <!-- ইউটিউব -->
+                <a href="https://www.youtube.com/@ShimulXDBD" class="social-link sl-yt" target="_blank">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                    <span>ইউটিউব চ্যানেল</span>
+                </a>
+            </div>
+
         </div>
 
-        <!-- ── ABOUT ── -->
-        <div id="about" class="tab-panel">
-
-            <!-- Mission Card -->
-            <div class="card card-hex">
-                <div class="card-title"><i class="fas fa-bullseye"></i> আমাদের লক্ষ্য ও পরিচিতি</div>
-                <p class="about-mission">
-                    <strong>PixelLab ShimulXD</strong> সাধারণ কোনো মোড নয়। এটি প্রফেশনাল ডিজাইনারদের চাহিদাকে সর্বোচ্চ গুরুত্ব দিয়ে তৈরি একটি শক্তিশালী টুল।
-                    উন্নত AI ব্যাকগ্রাউন্ড রিমুভার ও অটো ফন্ট ম্যানেজমেন্টসহ <span class="exclusive-badge">Exclusive Premium</span> ফিচার দিয়ে মোবাইল গ্রাফিক্স ডিজাইনকে নতুন উচ্চতায় নিয়ে যাওয়াই আমাদের লক্ষ্য।
-                </p>
-
-                <div class="info-row">
-                    <div class="info-icon" style="background:rgba(251,191,36,0.12);">
-                        <i class="fas fa-crown" style="color:#fbbf24;font-size:16px;"></i>
-                    </div>
-                    <div class="info-text">
-                        <strong>Build Type</strong>
-                        <span class="info-value">Pro · Ultimate Premium</span>
-                    </div>
-                </div>
-
-                <div class="info-row">
-                    <div class="info-icon" style="background:rgba(52,211,153,0.12);">
-                        <i class="fas fa-users" style="color:#34d399;font-size:15px;"></i>
-                    </div>
-                    <div class="info-text">
-                        <strong>Community</strong>
-                        <span class="community-tag"><i class="fas fa-star" style="font-size:10px;"></i> ImaginStudio</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Team Card -->
-            <div class="card card-diamond">
-                <div class="card-title"><i class="fas fa-people-group"></i> টিম মেম্বার</div>
-                <div class="team-grid">
-
-                    <div class="team-card lead">
-                        <div class="team-avatar av-lead">SC</div>
-                        <div class="team-info">
-                            <div class="team-name">Shimul Chandra Barman</div>
-                            <div class="team-role">Re-Developer &amp; Lead Designer</div>
-                        </div>
-                        <span class="team-badge badge-lead">Lead</span>
-                    </div>
-
-                    <div class="team-card dev">
-                        <div class="team-avatar av-dev">MS</div>
-                        <div class="team-info">
-                            <div class="team-name">Md Shohanur Rahman Sohan</div>
-                            <div class="team-role">Text Emboss Fix Contributor</div>
-                        </div>
-                        <span class="team-badge badge-dev">Fix</span>
-                    </div>
-                    
-                    <div class="team-card dev">
-                        <div class="team-avatar av-dev">MS</div>
-                        <div class="team-info">
-                            <div class="team-name">Muhammad Abdul Aziz Rashid</div>
-                            <div class="team-role">Shape Emboss Fix Contributor</div>
-                        </div>
-                        <span class="team-badge badge-dev">Fix</span>
-                    </div>
-
-                    <div class="team-card fix">
-                        <div class="team-avatar av-fix">AG</div>
-                        <div class="team-info">
-                            <div class="team-name">Abrar Galib</div>
-                            <div class="team-role">Font Section Contributor</div>
-                        </div>
-                        <span class="team-badge badge-fix">Fix</span>
-                    </div>
-
-                </div>
-
-                <div class="quote-box">
-                    <p class="quote-text">"ডিজাইন হোক সহজ, <span>সৃজনশীলতা</span> হোক সীমাহীন।"</p>
-                </div>
-            </div>
-
-            <div class="footer-note">© 2026 ShimulXD · Crafted with <em>❤️</em></div>
-        </div>
-
-    </div><!-- /container -->
-</div><!-- /app -->
+        <div class="footer-note">© 2026 Shimullabs · নির্মিত <em>❤️</em> ও আন্তরিকতায়</div>
+    </div>
+</div>
 
 <script>
-    // ── Preloader ──
+    // Preloader hide
     window.addEventListener('load', () => {
-        const pre = document.getElementById('preloader');
-        setTimeout(() => pre.classList.add('hidden'), 1200);
+        setTimeout(() => {
+            const preloader = document.getElementById('preloader');
+            if(preloader) preloader.classList.add('hidden');
+        }, 1000);
     });
 
-    // ── Tab switch ──
-    function openTab(id, btn) {
-        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        document.getElementById(id).classList.add('active');
-        btn.classList.add('active');
-        if (navigator.vibrate) navigator.vibrate(8);
-    }
-
-    // ── Staggered feature reveal on scroll ──
+    // Scroll reveal animation
     const observer = new IntersectionObserver(entries => {
-        entries.forEach((e, i) => {
-            if (e.isIntersecting) {
-                e.target.style.animationDelay = (i * 0.06) + 's';
-                e.target.classList.add('revealed');
-                observer.unobserve(e.target);
+        entries.forEach(entry => {
+            if(entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.1, rootMargin: "0px 0px -20px 0px" });
 
-    document.querySelectorAll('.feature-item, .team-card, .info-row').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(16px)';
-        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    document.querySelectorAll('.notice-ticker, .info-row, .social-link').forEach(el => {
         observer.observe(el);
     });
 
-    document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('.feature-item, .team-card, .info-row').forEach(el => {
-            el.addEventListener('transitionend', () => {
-                el.style.opacity = '';
-                el.style.transform = '';
-            }, { once: true });
-        });
+    // Initial check for visible elements
+    document.querySelectorAll('.notice-ticker, .info-row, .social-link').forEach(el => {
+        if(el.getBoundingClientRect().top < window.innerHeight) {
+            el.classList.add('revealed');
+            observer.unobserve(el);
+        }
     });
-
-    // add revealed class CSS
-    const s = document.createElement('style');
-    s.textContent = '.revealed { opacity: 1 !important; transform: translateY(0) !important; }';
-    document.head.appendChild(s);
 </script>
 </body>
 </html>
